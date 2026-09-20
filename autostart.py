@@ -56,10 +56,12 @@ def detect() -> dict:
 
 
 def write_vbs(command: str) -> bool:
-    """写入启动 VBS。command 例如 pythonw "C:\\...\\tray_server.py" """
+    """写入启动 VBS。command 例如 "C:\\pythonw.exe" "C:\\tray_server.py\""""
+    # VBScript 字符串内双引号必须写成 ""
+    escaped = command.replace('"', '""')
     content = (
         'Set WshShell = CreateObject("WScript.Shell")\n'
-        f'WshShell.Run "{command}", 0, False\n'
+        f'WshShell.Run "{escaped}", 0, False\n'
     )
     try:
         os.makedirs(startup_dir(), exist_ok=True)
