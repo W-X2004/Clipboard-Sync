@@ -65,7 +65,9 @@ def write_vbs(command: str) -> bool:
     )
     try:
         os.makedirs(startup_dir(), exist_ok=True)
-        with open(entry_path(), "w", encoding="utf-8", newline="\r\n") as f:
+        # 必须用系统 ANSI 代码页（mbcs）。UTF-8 的 VBS 会被 WSH 按 GBK 误读，
+        # 中文安装路径会变成乱码导致开机无法启动。
+        with open(entry_path(), "w", encoding="mbcs", newline="\r\n") as f:
             f.write(content)
         return os.path.isfile(entry_path())
     except OSError as e:
