@@ -130,6 +130,7 @@ python tray_client.py <服务端IP> [端口]
 | 托盘一直是灰色 | 确认服务端已启动、IP/端口正确、防火墙放行 12345 |
 | 无法连接 | 两台电脑需在同一局域网；`ping <服务端IP>` 测试 |
 | autostart.bat 打不开 | 用 cmd 执行 `python autostart.py` 查看报错 |
+| 中文安装路径开机不启动 | 用新版 `autostart.py` 重装自启动（VBS 必须按系统 ANSI/GBK 写入，不能用 UTF-8） |
 | 日志 | 目录下 `server.log` / `client.log` |
 
 ## 端口与协议
